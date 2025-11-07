@@ -1,4 +1,4 @@
-from address_book import Phone, Birthday, Record, AddressBook
+from address_book import Record, AddressBook
 
 
 def input_error(func):
@@ -20,11 +20,8 @@ def input_error(func):
 def add_birthday(args, book):
     name, birthday, *_ = args
     record = book.find(name)
-    if record:
-        record.add_birthday(birthday)
-        return f"Birthday added for {name}"
-    else:
-        raise ValueError(f"Contact {name} not found")
+    record.add_birthday(birthday)
+    return f"Birthday added for {name}"
 
 
 @input_error
@@ -33,10 +30,7 @@ def show_birthday(args, book):
     record = book.find(name)
     if record and record.birthday:
         return f"Birthday for {name}: {record.birthday}"
-    elif record:
-        return f"No birthday set for {name}"
-    else:
-        raise ValueError(f"Contact {name} not found")
+    return f"No birthday set for {name}"
 
 
 @input_error

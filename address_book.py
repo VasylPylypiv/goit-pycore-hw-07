@@ -1,13 +1,14 @@
 import datetime
 from collections import UserDict
 
+
 class Field:
     def __init__(self, value):
         self.value = value
 
     def __str__(self):
         return str(self.value)
-    
+
 
 class Name(Field):
     def __init__(self, value):
@@ -33,7 +34,7 @@ class Birthday(Field):
 
     def __str__(self):
         return self.value.strftime('%d.%m.%Y')
-    
+
 
 class Record:
     def __init__(self, name):
@@ -77,7 +78,7 @@ class Record:
         phones_str = '; '.join(str(p) for p in self.phones)
         birthday_str = f", birthday: {self.birthday}" if self.birthday else ""
         return f"Contact name: {self.name.value}, phones: {phones_str}{birthday_str}"
-    
+
 
 class AddressBook(UserDict):
     def add_record(self, record):
@@ -91,7 +92,7 @@ class AddressBook(UserDict):
             del self.data[name]
         else:
             raise ValueError(f"Contact {name} not found")
-        
+
     def get_upcoming_birthdays(self):
         congratulations_list = []
         today = datetime.date.today()
